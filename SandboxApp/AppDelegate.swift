@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import LimeCore
+import LimeAuth
+import PowerAuth2
+
+typealias D = LimeDebug
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +21,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+		// Setup shared configurations
+		configureLibraries()
+		
+		// First access to shared configurations
+		let hasActivation = LimeAuthSession.shared.hasValidActivation
+		if hasActivation {
+			D.print("AppStart: You have a valid activation")
+		} else {
+			D.print("AppStart: There's no valid activation")
+		}
+		
+		let debugBuild = PA2System.isInDebug()
+		if debugBuild {
+			D.print("AppStart: PowerAuth library is compiled as DEBUG build.")
+			#if !DEBUG
+				fatalError("AppStart: You should not mix debug library and release application!")
+			#endif
+		}
+		
 		return true
 	}
 
@@ -42,5 +66,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 
+	func configureLibraries() {
+		LimeConfig.registerConfigDomains = { (config) in
+			guard let authSession = config.registerAuthSession,
+				let localization = config.registerLocalization else {
+					fatalError("Cannot access shared configurations.")
+				}
+			
+			// loclizations
+			localization.defaultLanguage = "en"
+			
+			// auth session
+			let powerAuth = authSession.powerAuth
+			powerAuth.appKey = "QdGi0mefDLSauL2tiQwSOw=="
+			powerAuth.appSecret = "Ec1RlAr6B3Il6wEg9OQLXA=="
+			powerAuth.masterServerPublicKey = "BGyETh1n9W20nHaxj9n2Fm72N/0/i7gKcBSyL4nCqLAqsD/tkrzPA3dibvmYXGL2NPTusUhFISu2a03PtLijtFs="
+			powerAuth.baseEndpointUrl = "http://localhost:8080/powerauth-webflow"
+			powerAuth.instanceId = "SharedSession"
+		}
+	}
+	
 }
 

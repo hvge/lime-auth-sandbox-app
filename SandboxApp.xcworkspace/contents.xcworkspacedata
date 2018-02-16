@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:SandboxApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/powerauth-mobile-sdk/proj-xcode/PowerAuthLib.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/swift-lime-auth/LimeAuth.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/swift-lime-core/LimeCore.xcodeproj">
+   </FileRef>
+</Workspace>

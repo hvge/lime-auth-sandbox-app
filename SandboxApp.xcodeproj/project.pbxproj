@@ -12,6 +12,11 @@
 		BF9EED3720373D29001D8DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9EED3520373D29001D8DF8 /* Main.storyboard */; };
 		BF9EED3920373D29001D8DF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9EED3820373D29001D8DF8 /* Assets.xcassets */; };
 		BF9EED3C20373D29001D8DF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9EED3A20373D29001D8DF8 /* LaunchScreen.storyboard */; };
+		BFE11EFA203740170087E303 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BFE11EF8203740170087E303 /* README.md */; };
+		BFE11EFB203740170087E303 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = BFE11EF9203740170087E303 /* Cartfile */; };
+		BFE11F0A203748140087E303 /* LimeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE11F0B203748140087E303 /* LimeCore.framework */; };
+		BFE11F0C2037481E0087E303 /* LimeAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE11F0D2037481E0087E303 /* LimeAuth.framework */; };
+		BFE11F0E2037486C0087E303 /* PowerAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE11F0F2037486C0087E303 /* PowerAuth2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,14 @@
 		BF9EED3820373D29001D8DF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF9EED3B20373D29001D8DF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF9EED3D20373D29001D8DF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFE11EF8203740170087E303 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BFE11EF9203740170087E303 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		BFE11F02203741420087E303 /* PowerAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PowerAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFE11F04203741480087E303 /* LimeAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LimeAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFE11F06203741660087E303 /* LimeCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LimeCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFE11F0B203748140087E303 /* LimeCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LimeCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFE11F0D2037481E0087E303 /* LimeAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LimeAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFE11F0F2037486C0087E303 /* PowerAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PowerAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE11F0A203748140087E303 /* LimeCore.framework in Frameworks */,
+				BFE11F0E2037486C0087E303 /* PowerAuth2.framework in Frameworks */,
+				BFE11F0C2037481E0087E303 /* LimeAuth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +57,7 @@
 				BF9EED4420373DFF001D8DF8 /* Supporting Files */,
 				BF9EED3020373D29001D8DF8 /* SandboxApp */,
 				BF9EED2F20373D29001D8DF8 /* Products */,
+				BFE11F00203741420087E303 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,8 +85,23 @@
 		BF9EED4420373DFF001D8DF8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BFE11EF9203740170087E303 /* Cartfile */,
+				BFE11EF8203740170087E303 /* README.md */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BFE11F00203741420087E303 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFE11F0B203748140087E303 /* LimeCore.framework */,
+				BFE11F0D2037481E0087E303 /* LimeAuth.framework */,
+				BFE11F0F2037486C0087E303 /* PowerAuth2.framework */,
+				BFE11F06203741660087E303 /* LimeCore.framework */,
+				BFE11F04203741480087E303 /* LimeAuth.framework */,
+				BFE11F02203741420087E303 /* PowerAuth2.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,8 +163,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE11EFB203740170087E303 /* Cartfile in Resources */,
 				BF9EED3C20373D29001D8DF8 /* LaunchScreen.storyboard in Resources */,
 				BF9EED3920373D29001D8DF8 /* Assets.xcassets in Resources */,
+				BFE11EFA203740170087E303 /* README.md in Resources */,
 				BF9EED3720373D29001D8DF8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
