@@ -86,11 +86,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			
 			// auth session
 			let powerAuth = authSession.powerAuth
-			powerAuth.appKey = "QdGi0mefDLSauL2tiQwSOw=="
-			powerAuth.appSecret = "Ec1RlAr6B3Il6wEg9OQLXA=="
-			powerAuth.masterServerPublicKey = "BGyETh1n9W20nHaxj9n2Fm72N/0/i7gKcBSyL4nCqLAqsD/tkrzPA3dibvmYXGL2NPTusUhFISu2a03PtLijtFs="
-			powerAuth.baseEndpointUrl = "http://localhost:8080/powerauth-webflow"
-			powerAuth.instanceId = "SharedSession"
+			if let debugConfig = DebugConfig.loadDebugConfiguration(), let paConfig = debugConfig["powerAuth"] {
+                powerAuth.appKey = paConfig["appKey"] ?? ""
+                powerAuth.appSecret = paConfig["appSecret"] ?? ""
+                powerAuth.masterServerPublicKey = paConfig["masterServerPublicKey"] ?? ""
+                powerAuth.baseEndpointUrl = paConfig["baseEndpointUrl"] ?? ""
+			}
+            powerAuth.instanceId = "SharedSession"
 		}
 	}
 	

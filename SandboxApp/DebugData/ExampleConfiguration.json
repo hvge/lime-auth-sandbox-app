@@ -1,0 +1,8 @@
+{
+	"powerAuth": {
+		"appKey"				: "...",
+		"appSecret"				: "...",
+		"masterServerPublicKey" : "...",
+		"baseEndpointUrl"		: "http://localhost/path-to-powerauth"
+	}
+}

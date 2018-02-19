@@ -19,26 +19,26 @@ import LimeAuth
 
 class MainViewController: EmbeddingViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		self.switchAppState()
-	}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.switchAppState()
+    }
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		
-	}
-	
-	
-	func switchAppState() {
-		if LimeAuthSession.shared.hasValidActivation {
-			self.performSegue(withIdentifier: "switchToStatusCheck", sender: nil)
-		} else {
-			self.performSegue(withIdentifier: "switchToActivation", sender: nil)
-		}
-	}
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+    }
+    
+    
+    func switchAppState() {
+        if LimeAuthSession.shared.hasValidActivation {
+            self.performSegue(withIdentifier: "switchToStatusCheck", sender: nil)
+        } else {
+            self.performSegue(withIdentifier: "switchToActivation", sender: nil)
+        }
+    }
 
 }
 
