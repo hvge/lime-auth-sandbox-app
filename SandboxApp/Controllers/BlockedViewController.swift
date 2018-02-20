@@ -16,12 +16,22 @@
 
 import UIKit
 
-class BlockedViewController: UIViewController {
+class BlockedViewController: UIViewController, StatusCheckFailureReasonPresenter {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var failureReasonLabel: UILabel!
+
+    var statusCheckFailureReason: StatusCheckFailureReason?
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        var message: String
+        if let reason = statusCheckFailureReason, let error = reason.otherError {
+            message = "Error: \(error.localizedDescription)"
+        } else {
+            message = "Activation is Blocked"
+        }
+        failureReasonLabel.text = message
     }
 
     override func didReceiveMemoryWarning() {

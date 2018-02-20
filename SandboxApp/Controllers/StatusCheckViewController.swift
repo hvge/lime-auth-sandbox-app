@@ -15,13 +15,24 @@
 //
 
 import UIKit
+import LimeAuth
+
+struct StatusCheckFailureReason {
+    let isBlocked: Bool
+    let otherError: Error?
+    let otherMessage: String?
+}
+
+protocol StatusCheckFailureReasonPresenter {
+    var statusCheckFailureReason: StatusCheckFailureReason? { get set }
+}
 
 class StatusCheckViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        updateActivationStatus()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,15 +40,44 @@ class StatusCheckViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private weak var updateOperation: Operation?
+    
+    private func updateActivationStatus() {
+        
+        if updateOperation != nil {
+            // there's already update operation
+            return
+        }
+        
+        updateOperation = LimeAuthSession.shared.fetchActivationStatus { (status, _, error) in
+            self.updateOperation = nil
+            if let status = status {
+                let state = status.state
+                if state == .active {
+                    self.performSegue(withIdentifier: "switchToLogin", sender: nil)
+                } else if state == .blocked {
+                    let reason = StatusCheckFailureReason(isBlocked: true, otherError: nil, otherMessage: nil)
+                    self.performSegue(withIdentifier: "switchToBlocked", sender: reason)
+                } else if state == .removed {
+                    let alert = UIAlertController(title: "Error", message: "Activation is no longer valid on this device.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default) { (action) in
+                        LimeAuthSession.shared.removeActivationLocal()
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                let reason = StatusCheckFailureReason(isBlocked: false, otherError: error, otherMessage: error == nil ? "Unknown error" : nil)
+                self.performSegue(withIdentifier: "switchToBlocked", sender: reason)
+            }
+        }
+    }
+    
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if var failurePresenter = segue.destination as? StatusCheckFailureReasonPresenter, let reason = sender as? StatusCheckFailureReason {
+            failurePresenter.statusCheckFailureReason = reason
+        }
     }
-    */
-
 }

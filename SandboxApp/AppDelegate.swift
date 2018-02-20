@@ -84,15 +84,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			// loclizations
 			localization.defaultLanguage = "en"
 			
-			// auth session
+			// powerauth
 			let powerAuth = authSession.powerAuth
+            powerAuth.instanceId = "SharedSession"
+            
 			if let debugConfig = DebugConfig.loadDebugConfiguration(), let paConfig = debugConfig["powerAuth"] {
                 powerAuth.appKey = paConfig["appKey"] ?? ""
                 powerAuth.appSecret = paConfig["appSecret"] ?? ""
                 powerAuth.masterServerPublicKey = paConfig["masterServerPublicKey"] ?? ""
                 powerAuth.baseEndpointUrl = paConfig["baseEndpointUrl"] ?? ""
 			}
-            powerAuth.instanceId = "SharedSession"
+          
+            // powerauth client
+            let powerAuthClient = authSession.powerAuthHttpClient
+            powerAuthClient.sslValidationStrategy = PA2ClientSslNoValidationStrategy()
 		}
 	}
 	

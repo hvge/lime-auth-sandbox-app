@@ -15,29 +15,90 @@
 //
 
 import UIKit
+import PowerAuth2
+
+class TemporaryActivationData {
+	
+    let activationCode: String
+	let password: String
+	let allowBiometry: Bool
+    
+	init(activationCode: String, password: String, allowBiometry: Bool) {
+		self.activationCode = activationCode
+		self.password = password
+		self.allowBiometry = allowBiometry
+	}
+    
+    var onSuccess: (()->Void)?
+    var onFailure: (()->Void)?
+}
+
+protocol TemporaryActivationDataConsumer {
+	var activationData: TemporaryActivationData? { get set }
+}
 
 class ActivateViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	@IBOutlet weak var activationCodeTextField: UITextField!
+	@IBOutlet weak var passwordTextField: UITextField!
+	@IBOutlet weak var allowBiometrySwitch: UISwitch!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		self.allowBiometrySwitch.isEnabled = PA2Keychain.canUseBiometricAuthentication
+	}
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.activationCodeTextField.text = ""
     }
-    */
+	
+
+	@IBAction func activationAction(_ sender: Any) {
+		guard let activationCode = activationCodeTextField.text else {
+			let alert = UIAlertController(title: "Error", message: "Please enter activation code.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+			return
+		}
+		guard let password = passwordTextField.text else {
+			let alert = UIAlertController(title: "Error", message: "Please enter password.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+			return
+		}
+		if !PA2OtpUtil.validateActivationCode(activationCode) {
+			let alert = UIAlertController(title: "Error", message: "Activation code is not valid.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+            return
+		}
+        if password.count < 4 {
+            let alert = UIAlertController(title: "Error", message: "Password is too short.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        // Create TemporaryActivationData object
+        let activationData = TemporaryActivationData(activationCode: activationCode, password: password, allowBiometry: allowBiometrySwitch.isOn)
+        activationData.onFailure = {
+            self.navigationController?.popToViewController(self, animated: true)
+        }
+        activationData.onSuccess = {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        // Switch screen
+		self.performSegue(withIdentifier: "doActivation", sender: activationData)
+	}
+	
+	// MARK: - Navigation
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var activationDataConsumer = segue.destination as? TemporaryActivationDataConsumer
+		activationDataConsumer?.activationData = sender as? TemporaryActivationData
+	}
 
 }

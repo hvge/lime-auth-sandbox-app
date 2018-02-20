@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ag5-W2-3vt">
-                                <rect key="frame" x="16" y="16" width="343" height="268.5"/>
+                                <rect key="frame" x="16" y="16" width="343" height="315.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmz-Y5-iFW">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="81.5"/>
@@ -151,17 +151,34 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="REL-SN-0sz" userLabel="Stack View - Password">
+                                        <rect key="frame" x="0.0" y="181.5" width="343" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow biometry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YfS-h7-Uor">
+                                                <rect key="frame" x="0.0" y="0.0" width="286" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hrn-G3-Jyk">
+                                                <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgX-Sa-e4q">
-                                        <rect key="frame" x="0.0" y="181.5" width="343" height="32"/>
+                                        <rect key="frame" x="0.0" y="228.5" width="343" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="nuK-ie-QN3"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geb-DL-qlf">
-                                        <rect key="frame" x="0.0" y="229.5" width="343" height="39"/>
+                                        <rect key="frame" x="0.0" y="276.5" width="343" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Activate"/>
+                                        <connections>
+                                            <action selector="activationAction:" destination="jY3-ox-cdo" eventType="touchUpInside" id="6Cm-fH-acj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -175,6 +192,9 @@
                         <viewLayoutGuide key="safeArea" id="ODK-Hq-jwS"/>
                     </view>
                     <connections>
+                        <outlet property="activationCodeTextField" destination="lAG-Kr-VqB" id="9za-Xy-f8H"/>
+                        <outlet property="allowBiometrySwitch" destination="Hrn-G3-Jyk" id="93r-tZ-aLR"/>
+                        <outlet property="passwordTextField" destination="p9p-V9-ruz" id="DbM-fw-zBV"/>
                         <segue destination="HBZ-Is-DDP" kind="show" identifier="doActivation" id="snH-iv-6Qq"/>
                     </connections>
                 </viewController>
@@ -205,21 +225,42 @@
                                 <rect key="frame" x="16" y="544" width="343" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Start using application"/>
+                                <connections>
+                                    <action selector="successAction:" destination="HBZ-Is-DDP" eventType="touchUpInside" id="GvY-tA-0TK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmv-p7-y5z" userLabel="Cancel Button">
+                                <rect key="frame" x="16" y="544" width="343" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Cancel Activation"/>
+                                <connections>
+                                    <action selector="cancelActivation:" destination="HBZ-Is-DDP" eventType="touchUpInside" id="l6D-cr-5Hx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9of-7h-aLd" firstAttribute="leading" secondItem="WkX-k7-vR5" secondAttribute="leading" constant="64" id="5pP-7R-kHT"/>
                             <constraint firstItem="HCO-BS-uPT" firstAttribute="leading" secondItem="WkX-k7-vR5" secondAttribute="leading" constant="16" id="LzJ-p1-Eus"/>
+                            <constraint firstItem="HCO-BS-uPT" firstAttribute="top" secondItem="nmv-p7-y5z" secondAttribute="top" id="NKA-Lx-U3s"/>
                             <constraint firstItem="MMx-Nf-DvM" firstAttribute="centerY" secondItem="8Us-Q9-12y" secondAttribute="centerY" multiplier="0.85" id="OSb-Ja-0WW"/>
+                            <constraint firstItem="HCO-BS-uPT" firstAttribute="trailing" secondItem="nmv-p7-y5z" secondAttribute="trailing" id="XSv-Qh-Dj0"/>
                             <constraint firstItem="MMx-Nf-DvM" firstAttribute="centerX" secondItem="8Us-Q9-12y" secondAttribute="centerX" id="aJQ-NN-bYz"/>
                             <constraint firstItem="WkX-k7-vR5" firstAttribute="trailing" secondItem="9of-7h-aLd" secondAttribute="trailing" constant="64" id="ds1-Lf-Q9f"/>
                             <constraint firstItem="WkX-k7-vR5" firstAttribute="bottom" secondItem="HCO-BS-uPT" secondAttribute="bottom" constant="20" id="mr4-Su-poh"/>
                             <constraint firstItem="WkX-k7-vR5" firstAttribute="trailing" secondItem="HCO-BS-uPT" secondAttribute="trailing" constant="16" id="nOA-EW-15b"/>
                             <constraint firstItem="9of-7h-aLd" firstAttribute="top" secondItem="MMx-Nf-DvM" secondAttribute="bottom" constant="55" id="wUs-ku-YlI"/>
+                            <constraint firstItem="HCO-BS-uPT" firstAttribute="bottom" secondItem="nmv-p7-y5z" secondAttribute="bottom" id="z8i-cT-skj"/>
+                            <constraint firstItem="HCO-BS-uPT" firstAttribute="leading" secondItem="nmv-p7-y5z" secondAttribute="leading" id="zce-Pl-vK0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WkX-k7-vR5"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="MMx-Nf-DvM" id="52S-Eo-q87"/>
+                        <outlet property="activityStep" destination="9of-7h-aLd" id="ekP-uH-Yvj"/>
+                        <outlet property="cancelActivationButton" destination="nmv-p7-y5z" id="GxS-kx-iRF"/>
+                        <outlet property="completeActivationButton" destination="HCO-BS-uPT" id="g45-m3-tq7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rg-63-ILh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -275,12 +316,18 @@
                                 <state key="normal" title="Remove Activation">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="removeActivation:" destination="E3t-c4-sRk" eventType="touchUpInside" id="Mae-2v-OHV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fE-EA-AOg">
                                 <rect key="frame" x="104" y="387" width="167" height="30"/>
                                 <state key="normal" title="Remove Local Activation">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="removeLocalActivation:" destination="E3t-c4-sRk" eventType="touchUpInside" id="Vb4-Sd-RHR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -294,6 +341,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vKc-zF-nj9"/>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="iZj-MZ-pgx" id="QN1-iX-d6A"/>
+                        <outlet property="removeActivationButton" destination="ml2-a5-ntT" id="aiR-9g-l9g"/>
+                        <outlet property="removeLocalActivationButton" destination="6fE-EA-AOg" id="dpX-i9-CPR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uqZ-ld-oqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -307,8 +359,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activation is Blocked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDx-t0-p1y">
-                                <rect key="frame" x="102.5" y="247" width="170.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activation is Blocked" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDx-t0-p1y">
+                                <rect key="frame" x="32" y="247" width="311" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -319,20 +371,36 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cu9-av-eTF">
+                                <rect key="frame" x="169" y="419" width="37" height="30"/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <segue destination="oSo-3v-rLN" kind="custom" identifier="retryStatusCheck" customClass="EmbeddedControllerSwitchSegue" customModule="SandboxApp" customModuleProvider="target" id="4bL-Ud-2fN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jxW-xB-fWz" firstAttribute="centerX" secondItem="pOq-2I-799" secondAttribute="centerX" id="8rl-Cc-PIC"/>
                             <constraint firstItem="CDx-t0-p1y" firstAttribute="centerY" secondItem="pOq-2I-799" secondAttribute="centerY" multiplier="0.75" id="Hxz-gB-HAY"/>
-                            <constraint firstItem="CDx-t0-p1y" firstAttribute="centerX" secondItem="pOq-2I-799" secondAttribute="centerX" id="TQi-NU-9FA"/>
                             <constraint firstItem="jxW-xB-fWz" firstAttribute="top" secondItem="CDx-t0-p1y" secondAttribute="bottom" constant="82" id="V7H-v7-hb5"/>
-                            <constraint firstItem="jxW-xB-fWz" firstAttribute="centerX" secondItem="CDx-t0-p1y" secondAttribute="centerX" id="pZm-f7-EST"/>
+                            <constraint firstItem="pOq-2I-799" firstAttribute="trailing" secondItem="CDx-t0-p1y" secondAttribute="trailing" constant="32" id="VCp-Qf-n2i"/>
+                            <constraint firstItem="CDx-t0-p1y" firstAttribute="leading" secondItem="pOq-2I-799" secondAttribute="leading" constant="32" id="Z9y-WD-WA2"/>
+                            <constraint firstItem="cu9-av-eTF" firstAttribute="centerX" secondItem="jxW-xB-fWz" secondAttribute="centerX" id="gVS-cC-O4W"/>
+                            <constraint firstItem="cu9-av-eTF" firstAttribute="top" secondItem="jxW-xB-fWz" secondAttribute="bottom" constant="39" id="lTj-Yu-jpw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pOq-2I-799"/>
                     </view>
+                    <connections>
+                        <outlet property="failureReasonLabel" destination="CDx-t0-p1y" id="zwJ-2S-wxo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ue0-Se-NRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2094" y="1031"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4bL-Ud-2fN"/>
+    </inferredMetricsTieBreakers>
 </document>

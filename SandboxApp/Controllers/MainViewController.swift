@@ -22,18 +22,32 @@ class MainViewController: EmbeddingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.switchAppState()
+        NotificationCenter.default.addObserver(forName: LimeAuthSession.didRemoveActivation, object: nil, queue: .main) { (notification) in
+            self.switchAppState(forceTest: true)
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
+        self.switchAppState()
     }
+
+    private var lastHasValidActivation: Bool?
     
-    
-    func switchAppState() {
-        if LimeAuthSession.shared.hasValidActivation {
+    func switchAppState(forceTest: Bool = false) {
+        let currentState = LimeAuthSession.shared.hasValidActivation
+        if let lastState = lastHasValidActivation {
+            if lastState == currentState && !forceTest {
+                return
+            }
+        }
+        lastHasValidActivation = currentState
+        if currentState {
             self.performSegue(withIdentifier: "switchToStatusCheck", sender: nil)
         } else {
             self.performSegue(withIdentifier: "switchToActivation", sender: nil)

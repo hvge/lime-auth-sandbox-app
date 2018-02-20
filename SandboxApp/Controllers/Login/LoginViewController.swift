@@ -15,9 +15,16 @@
 //
 
 import UIKit
+import LimeAuth
+import PowerAuth2
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var removeActivationButton: UIButton!
+    @IBOutlet weak var removeLocalActivationButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +36,28 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+	@IBAction func removeActivation(_ sender: Any) {
+        let auth = PowerAuthAuthentication()
+        auth.usePassword = "1234"
+		auth.usePossession = true
+        disableButtons(disable: true)
+        let _ = LimeAuthSession.shared.removeActivation(authentication: auth) { (error) in
+            self.disableButtons(disable: false)
+            if error != nil {
+                LimeAuthSession.shared.removeActivationLocal()
+            }
+        }
+	}
+	
+	@IBAction func removeLocalActivation(_ sender: Any) {
+		LimeAuthSession.shared.removeActivationLocal()
+	}
+    
+    private func disableButtons(disable: Bool) {
+        loginButton.isEnabled = !disable
+        removeActivationButton.isEnabled = !disable
+        removeLocalActivationButton.isEnabled = !disable
+    }
 
     /*
     // MARK: - Navigation
