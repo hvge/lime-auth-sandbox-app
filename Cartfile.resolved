@@ -1,3 +1,3 @@
-github "lime-company/powerauth-mobile-sdk" "bc6135dcd96ad3b8a89ecf39f906e42ba7762c3b"
-github "lime-company/swift-lime-auth" "6bd7aced1aa860f559211a32535c7901ba057992"
-github "lime-company/swift-lime-core" "57f688be4bbb56938f681c9c939fcee17bc8769c"
+github "lime-company/powerauth-mobile-sdk" "9697f670c39884ae4bc0b3faaff577719b7ed4b7"
+github "lime-company/swift-lime-auth" "3e275f80046ea52221703a9f97da07241cf5ea02"
+github "lime-company/swift-lime-core" "bcd1659098e2a8294cccd3acb8cf13fee01a323b"
