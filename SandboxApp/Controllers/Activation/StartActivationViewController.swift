@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import LimeAuth
 
 class StartActivationViewController: UIViewController {
 
@@ -29,7 +30,23 @@ class StartActivationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    private var activationUI: LimeAuthActivationUI?
+    
+    @IBAction func startActivationAction(_ sender: Any) {
+        let session = LimeAuthSession.shared
+        let resourcesProvider = LimeAuthActivationUI.defaultResourcesProvider()
+        let ui = LimeAuthActivationUI(session: session, uiProvider: resourcesProvider) { [weak self] (result, finalController) in
+            guard let `self` = self else {
+                return
+            }
+            print("Activation result is \(result)")
+            finalController?.dismiss(animated: true, completion: nil)
+            self.activationUI = nil
+        }
+        activationUI = ui
+        ui.present(to: self)
+    }
+    
     /*
     // MARK: - Navigation
 
