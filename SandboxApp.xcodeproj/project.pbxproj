@@ -12,9 +12,6 @@
 		BF61342420444AC500164496 /* LimeAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF61342320444AC500164496 /* LimeAuth.framework */; };
 		BF61342620444ACA00164496 /* LimeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF61342520444ACA00164496 /* LimeCore.framework */; };
 		BF61342820444ACE00164496 /* PowerAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF61342720444ACE00164496 /* PowerAuth2.framework */; };
-		BF61342A20444B5600164496 /* PowerAuth2.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF61342720444ACE00164496 /* PowerAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF61342B20444B5600164496 /* LimeCore.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF61342520444ACA00164496 /* LimeCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF61342C20444B5600164496 /* LimeAuth.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF61342320444AC500164496 /* LimeAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF9EED3220373D29001D8DF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EED3120373D29001D8DF8 /* AppDelegate.swift */; };
 		BF9EED3420373D29001D8DF8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EED3320373D29001D8DF8 /* MainViewController.swift */; };
 		BF9EED3720373D29001D8DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9EED3520373D29001D8DF8 /* Main.storyboard */; };
@@ -34,22 +31,6 @@
 		BFE11F3D2037541D0087E303 /* ActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11F3C2037541D0087E303 /* ActivateViewController.swift */; };
 		BFE11F3F203757F70087E303 /* PendingActivationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11F3E203757F70087E303 /* PendingActivationViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		BF564CC4203B1BEF00839ADA /* Copy Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BF61342A20444B5600164496 /* PowerAuth2.framework in Copy Frameworks */,
-				BF61342B20444B5600164496 /* LimeCore.framework in Copy Frameworks */,
-				BF61342C20444B5600164496 /* LimeAuth.framework in Copy Frameworks */,
-			);
-			name = "Copy Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BF564C6C203AFC5800839ADA /* DebugConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugConfig.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -219,7 +200,7 @@
 				BF9EED2A20373D29001D8DF8 /* Sources */,
 				BF9EED2B20373D29001D8DF8 /* Frameworks */,
 				BF9EED2C20373D29001D8DF8 /* Resources */,
-				BF564CC4203B1BEF00839ADA /* Copy Frameworks */,
+				BF49147E20503F030094C822 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -277,6 +258,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BF49147E20503F030094C822 /* Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/LimeCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/LimeAuth.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PowerAuth2.framework",
+			);
+			name = "Copy Frameworks";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LimeCore.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LimeAuth.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PowerAuth2.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BF9EED2A20373D29001D8DF8 /* Sources */ = {
