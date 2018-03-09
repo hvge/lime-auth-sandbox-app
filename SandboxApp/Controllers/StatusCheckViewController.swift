@@ -64,12 +64,33 @@ class StatusCheckViewController: UIViewController {
                         LimeAuthSession.shared.removeActivationLocal()
                     })
                     self.present(alert, animated: true, completion: nil)
+                } else if state == .otp_Used {
+                    self.continueWithBrokenActivation()
                 }
             } else {
                 let reason = StatusCheckFailureReason(isBlocked: false, otherError: error, otherMessage: error == nil ? "Unknown error" : nil)
                 self.performSegue(withIdentifier: "switchToBlocked", sender: reason)
             }
         }
+    }
+    
+    var activationUI: LimeAuthActivationUI?
+    
+    func continueWithBrokenActivation() {
+        let session = LimeAuthSession.shared
+        let resourcesProvider = LimeAuthActivationUI.defaultResourcesProvider()
+        let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        let ui = LimeAuthActivationUI(session: session, uiProvider: resourcesProvider, credentialsProvider: credentialsProvider) { [weak self] (result, finalController) in
+            guard let `self` = self else {
+                return
+            }
+            print("Activation result is \(result)")
+            finalController?.dismiss(animated: true, completion: nil)
+            self.activationUI = nil
+        }
+        ui.entryScene = .default
+        activationUI = ui
+        ui.present(to: self)
     }
     
 

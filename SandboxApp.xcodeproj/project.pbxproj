@@ -26,8 +26,6 @@
 		BFE11F3420374D810087E303 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11F3320374D810087E303 /* LoginViewController.swift */; };
 		BFE11F3620374D8C0087E303 /* BlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11F3520374D8C0087E303 /* BlockedViewController.swift */; };
 		BFE11F3B20374F280087E303 /* StartActivationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11F3A20374F280087E303 /* StartActivationViewController.swift */; };
-		BFE11F3D2037541D0087E303 /* ActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11F3C2037541D0087E303 /* ActivateViewController.swift */; };
-		BFE11F3F203757F70087E303 /* PendingActivationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11F3E203757F70087E303 /* PendingActivationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,8 +52,6 @@
 		BFE11F3320374D810087E303 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BFE11F3520374D8C0087E303 /* BlockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedViewController.swift; sourceTree = "<group>"; };
 		BFE11F3A20374F280087E303 /* StartActivationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivationViewController.swift; sourceTree = "<group>"; };
-		BFE11F3C2037541D0087E303 /* ActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateViewController.swift; sourceTree = "<group>"; };
-		BFE11F3E203757F70087E303 /* PendingActivationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingActivationViewController.swift; sourceTree = "<group>"; };
 		FD0F7D735D5F298452CCE278 /* Pods-SandboxApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SandboxApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SandboxApp/Pods-SandboxApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,8 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				BFE11F3A20374F280087E303 /* StartActivationViewController.swift */,
-				BFE11F3C2037541D0087E303 /* ActivateViewController.swift */,
-				BFE11F3E203757F70087E303 /* PendingActivationViewController.swift */,
 			);
 			path = Activation;
 			sourceTree = "<group>";
@@ -337,9 +331,7 @@
 				BF9EED3220373D29001D8DF8 /* AppDelegate.swift in Sources */,
 				BF564C6D203AFC5800839ADA /* DebugConfig.swift in Sources */,
 				BFE11F2D20374B8E0087E303 /* EmbeddingViewController.swift in Sources */,
-				BFE11F3F203757F70087E303 /* PendingActivationViewController.swift in Sources */,
 				BFE11F3620374D8C0087E303 /* BlockedViewController.swift in Sources */,
-				BFE11F3D2037541D0087E303 /* ActivateViewController.swift in Sources */,
 				BFE11F2820374B8E0087E303 /* ChangeEmbeddedControllerSegue.swift in Sources */,
 				BFE11F3420374D810087E303 /* LoginViewController.swift in Sources */,
 			);

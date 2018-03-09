@@ -32,8 +32,11 @@ class MainViewController: EmbeddingViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
+    private var isInActivation = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        isInActivation = false
         self.switchAppState()
     }
 
@@ -47,10 +50,13 @@ class MainViewController: EmbeddingViewController {
             }
         }
         lastHasValidActivation = currentState
-        if currentState {
-            self.performSegue(withIdentifier: "switchToStatusCheck", sender: nil)
-        } else {
-            self.performSegue(withIdentifier: "switchToActivation", sender: nil)
+        if !isInActivation {
+            if currentState {
+                isInActivation = true
+                self.performSegue(withIdentifier: "switchToStatusCheck", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "switchToActivation", sender: nil)
+            }
         }
     }
 

@@ -44,6 +44,7 @@ class StartActivationViewController: UIViewController {
             finalController?.dismiss(animated: true, completion: nil)
             self.activationUI = nil
         }
+        ui.entryScene = .default
         activationUI = ui
         ui.present(to: self)
     }
