@@ -36,10 +36,10 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-	@IBAction func removeActivation(_ sender: Any) {
+    @IBAction func removeActivation(_ sender: Any) {
         let auth = PowerAuthAuthentication()
         auth.usePassword = "1234"
-		auth.usePossession = true
+        auth.usePossession = true
         disableButtons(disable: true)
         let _ = LimeAuthSession.shared.removeActivation(authentication: auth) { (error) in
             self.disableButtons(disable: false)
@@ -47,11 +47,11 @@ class LoginViewController: UIViewController {
                 LimeAuthSession.shared.removeActivationLocal()
             }
         }
-	}
-	
-	@IBAction func removeLocalActivation(_ sender: Any) {
-		LimeAuthSession.shared.removeActivationLocal()
-	}
+    }
+    
+    @IBAction func removeLocalActivation(_ sender: Any) {
+        LimeAuthSession.shared.removeActivationLocal()
+    }
     
     private func disableButtons(disable: Bool) {
         loginButton.isEnabled = !disable
@@ -61,8 +61,8 @@ class LoginViewController: UIViewController {
 
     private var authenticationUI: LimeAuthAuthenticationUI?
     
-	@IBAction func loginAction(_ sender: Any) {
-		
+    @IBAction func loginAction(_ sender: Any) {
+        
         let session = LimeAuthSession.shared
         let resourcesProvider = LimeAuthAuthenticationUI.defaultResourcesProvider()
         let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
@@ -91,9 +91,8 @@ class LoginViewController: UIViewController {
         self.authenticationUI = authUI
         // present UI
         authUI.present(to: self)
-		
-	}
-	/*
+    }
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
