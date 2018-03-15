@@ -16,13 +16,13 @@ PODS:
   - PowerAuth2 (0.17.2)
 
 DEPENDENCIES:
-  - LimeAuth/UIResources (from `https://github.com/lime-company/swift-lime-auth.git`, commit `e583953042983cc37bf5a09ee798e87d4bb2b5e3`)
+  - LimeAuth/UIResources (from `https://github.com/lime-company/swift-lime-auth.git`, commit `8c11e771fe3147d054915b12e1c91e4d5a19ab55`)
   - LimeCore (from `https://github.com/lime-company/swift-lime-core.git`, commit `e53132b217db7832e0e68f6bf4d759a60485a25b`)
   - PowerAuth2 (from `https://github.com/lime-company/lime-security-powerauth-mobile-sdk.git`, commit `887729f45a06bc99cbe9cfc4908e71529bbd1314`)
 
 EXTERNAL SOURCES:
   LimeAuth:
-    :commit: e583953042983cc37bf5a09ee798e87d4bb2b5e3
+    :commit: 8c11e771fe3147d054915b12e1c91e4d5a19ab55
     :git: https://github.com/lime-company/swift-lime-auth.git
   LimeCore:
     :commit: e53132b217db7832e0e68f6bf4d759a60485a25b
@@ -34,7 +34,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LimeAuth:
-    :commit: e583953042983cc37bf5a09ee798e87d4bb2b5e3
+    :commit: 8c11e771fe3147d054915b12e1c91e4d5a19ab55
     :git: https://github.com/lime-company/swift-lime-auth.git
   LimeCore:
     :commit: e53132b217db7832e0e68f6bf4d759a60485a25b
@@ -49,6 +49,6 @@ SPEC CHECKSUMS:
   LimeCore: fe30b980477315e3c1ee36664bd0d6f41674b853
   PowerAuth2: 069c0101e9aeb5452de815dd5cff43786a95c9b5
 
-PODFILE CHECKSUM: 92f3d3f6ef7954f39c7903d3407a7b0bde926fb8
+PODFILE CHECKSUM: 0791d3df7c4c46cde0a3975f088e7eba851d46ab
 
 COCOAPODS: 1.4.0

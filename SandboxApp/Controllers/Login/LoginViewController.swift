@@ -59,7 +59,41 @@ class LoginViewController: UIViewController {
         removeLocalActivationButton.isEnabled = !disable
     }
 
-    /*
+    private var authenticationUI: LimeAuthAuthenticationUI?
+    
+	@IBAction func loginAction(_ sender: Any) {
+		
+        let session = LimeAuthSession.shared
+        let resourcesProvider = LimeAuthAuthenticationUI.defaultResourcesProvider()
+        let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        
+        // Creates repeatable operation, you need to implement execution in provided closure
+        let operation = OnlineAuthenticationUIOperation { (authentication, completionCallback) -> Operation? in
+            let _ = session.powerAuth.validatePasswordCorrect(authentication.usePassword!) { (error) in
+                if let error = error {
+                    completionCallback(nil, LimeAuthError(error: error))
+                } else {
+                    completionCallback(nil, nil)
+                }
+            }
+            return nil
+        }
+        
+        var request = Authentication.UIRequest()
+        request.tweaks.successAnimationDelay = 650
+        //request.options.insert([.allowBiometryFactor, .askFirstForBiometryFactor])
+        let authUI = LimeAuthAuthenticationUI(session: session, uiProvider: resourcesProvider, credentialsProvider: credentialsProvider, request: request, operation: operation) { (result, response, finalController) in
+            self.authenticationUI = nil
+            D.print("Operation result: \(result)")
+            // dismiss UI
+            finalController?.dismiss(animated: true, completion: nil)
+        }
+        self.authenticationUI = authUI
+        // present UI
+        authUI.present(to: self)
+		
+	}
+	/*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
