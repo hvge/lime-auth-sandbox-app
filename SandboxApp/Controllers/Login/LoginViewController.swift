@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
         let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
         
         // Creates repeatable operation, you need to implement execution in provided closure
-        let operation = OnlineAuthenticationUIOperation { (authentication, completionCallback) -> Operation? in
+        let operation = OnlineAuthenticationUIOperation(isSerialized: true) { (authentication, completionCallback) -> Operation? in
             let _ = session.powerAuth.validatePasswordCorrect(authentication.usePassword!) { (error) in
                 if let error = error {
                     completionCallback(nil, LimeAuthError(error: error))
@@ -87,6 +87,9 @@ class LoginViewController: UIViewController {
             D.print("Operation result: \(result)")
             // dismiss UI
             finalController?.dismiss(animated: true, completion: nil)
+			if result == .success {
+				self.performSegue(withIdentifier: "goToSettings", sender: nil)
+			}
         }
         self.authenticationUI = authUI
         // present UI

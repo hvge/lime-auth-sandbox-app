@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F8181AB5412D1E1BC8BB6CE /* Pods_SandboxApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF6E275F554A1054FA9BD1B /* Pods_SandboxApp.framework */; };
+		BF31241220615DD500E7533F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF31241120615DD500E7533F /* SettingsViewController.swift */; };
 		BF564C6D203AFC5800839ADA /* DebugConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF564C6C203AFC5800839ADA /* DebugConfig.swift */; };
 		BF564C6F203AFD8C00839ADA /* DebugData in Resources */ = {isa = PBXBuildFile; fileRef = BF564C6E203AFD8C00839ADA /* DebugData */; };
 		BF9EED3220373D29001D8DF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EED3120373D29001D8DF8 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		60B7740AC5485C9712096C9F /* Pods-SandboxApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SandboxApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SandboxApp/Pods-SandboxApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BEF6E275F554A1054FA9BD1B /* Pods_SandboxApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SandboxApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF31241120615DD500E7533F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BF564C6C203AFC5800839ADA /* DebugConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugConfig.swift; sourceTree = "<group>"; usesTabs = 0; };
 		BF564C6E203AFD8C00839ADA /* DebugData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DebugData; sourceTree = "<group>"; };
 		BF9EED2E20373D29001D8DF8 /* SandboxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SandboxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,14 @@
 				FD0F7D735D5F298452CCE278 /* Pods-SandboxApp.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BF312410206125BB00E7533F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BF31241120615DD500E7533F /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		BF564C6B203AFC2B00839ADA /* Utilities */ = {
@@ -137,6 +147,7 @@
 			children = (
 				BFE11F3720374DFB0087E303 /* Activation */,
 				BFE11F3920374E490087E303 /* Login */,
+				BF312410206125BB00E7533F /* Settings */,
 				BFE11F2020374B8E0087E303 /* EmbeddingViewController */,
 				BF9EED3320373D29001D8DF8 /* MainViewController.swift */,
 				BFE11F3120374D730087E303 /* StatusCheckViewController.swift */,
@@ -328,6 +339,7 @@
 				BFE11F2A20374B8E0087E303 /* EmbeddedControllerCrossfadeSegue.swift in Sources */,
 				BFE11F2C20374B8E0087E303 /* EmbeddedViewsBaseTransition.swift in Sources */,
 				BFE11F2B20374B8E0087E303 /* EmbeddedControllerSwitchSegue.swift in Sources */,
+				BF31241220615DD500E7533F /* SettingsViewController.swift in Sources */,
 				BF9EED3220373D29001D8DF8 /* AppDelegate.swift in Sources */,
 				BF564C6D203AFC5800839ADA /* DebugConfig.swift in Sources */,
 				BFE11F2D20374B8E0087E303 /* EmbeddingViewController.swift in Sources */,
