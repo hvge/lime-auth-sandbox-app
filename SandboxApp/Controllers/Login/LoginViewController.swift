@@ -88,9 +88,8 @@ class LoginViewController: UIViewController {
     }
 
     private func buildFakeLoginOperation() -> AuthenticationUIOperation {
-        return OnlineAuthenticationUIOperation(isSerialized: false) { (authentication, completionCallback) -> Operation? in
-            let session = URLSession.shared
-            let task = session.dataTask(with: URL(string: "https://m.google.com")!) { (data, response, error) in
+        return OnlineAuthenticationUIOperation(isSerialized: false) { (session, authentication, completionCallback) -> Operation? in
+            let task = URLSession.shared.dataTask(with: URL(string: "https://m.google.com")!) { (data, response, error) in
                 completionCallback(nil, error != nil ? LimeAuthError(error: error!) : nil)
             }
             task.resume()
@@ -99,8 +98,8 @@ class LoginViewController: UIViewController {
     }
     
     private func buildRealLoginOperation() -> AuthenticationUIOperation {
-        return OnlineAuthenticationUIOperation(isSerialized: true) { (authentication, completionCallback) -> Operation? in
-            let _ = LimeAuthSession.shared.powerAuth.validatePasswordCorrect(authentication.usePassword!) { (error) in
+        return OnlineAuthenticationUIOperation(isSerialized: true) { (session, authentication, completionCallback) -> Operation? in
+            let _ = session.validatePassword(password: authentication.usePassword!){ (error) in
                 if let error = error {
                     completionCallback(nil, LimeAuthError(error: error))
                 } else {
