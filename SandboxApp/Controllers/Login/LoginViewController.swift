@@ -67,17 +67,8 @@ class LoginViewController: UIViewController {
         let resourcesProvider = LimeAuthAuthenticationUI.defaultResourcesProvider()
         let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
         
-        // Creates repeatable operation, you need to implement execution in provided closure
-        let operation = OnlineAuthenticationUIOperation(isSerialized: true) { (authentication, completionCallback) -> Operation? in
-            let _ = session.powerAuth.validatePasswordCorrect(authentication.usePassword!) { (error) in
-                if let error = error {
-                    completionCallback(nil, LimeAuthError(error: error))
-                } else {
-                    completionCallback(nil, nil)
-                }
-            }
-            return nil
-        }
+        let operation = buildFakeLoginOperation()
+        //let operation = buildRealLoginOperation()
         
         var request = Authentication.UIRequest()
         request.tweaks.successAnimationDelay = 650
@@ -95,14 +86,28 @@ class LoginViewController: UIViewController {
         // present UI
         authUI.present(to: self)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func buildFakeLoginOperation() -> AuthenticationUIOperation {
+        return OnlineAuthenticationUIOperation(isSerialized: false) { (authentication, completionCallback) -> Operation? in
+            let session = URLSession.shared
+            let task = session.dataTask(with: URL(string: "https://m.google.com")!) { (data, response, error) in
+                completionCallback(nil, error != nil ? LimeAuthError(error: error!) : nil)
+            }
+            task.resume()
+            return nil
+        }
     }
-    */
-
+    
+    private func buildRealLoginOperation() -> AuthenticationUIOperation {
+        return OnlineAuthenticationUIOperation(isSerialized: true) { (authentication, completionCallback) -> Operation? in
+            let _ = LimeAuthSession.shared.powerAuth.validatePasswordCorrect(authentication.usePassword!) { (error) in
+                if let error = error {
+                    completionCallback(nil, LimeAuthError(error: error))
+                } else {
+                    completionCallback(nil, nil)
+                }
+            }
+            return nil
+        }
+    }
 }
