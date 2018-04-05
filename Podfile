@@ -3,9 +3,9 @@ platform :ios, '9.0'
 target 'SandboxApp' do
     use_frameworks!
 
-    pod 'PowerAuth2',           :git => 'https://github.com/lime-company/lime-security-powerauth-mobile-sdk.git', :commit => '887729f45a06bc99cbe9cfc4908e71529bbd1314', :submodules => true
+    pod 'PowerAuth2',           :git => 'https://github.com/lime-company/lime-security-powerauth-mobile-sdk.git', :commit => '861f8cb10a5ab3b51349ddcae08ccca8d2a6255a', :submodules => true
 	pod 'LimeCore'
-	pod 'LimeAuth/UIResources', :git => 'https://github.com/lime-company/swift-lime-auth.git', :commit => 'bc406f26a20d5ee5e18a92813d3463473e5212d5'
+	pod 'LimeAuth/UIResources', :git => 'https://github.com/lime-company/swift-lime-auth.git', :commit => '59d208139b595aa907aafa6e23d1d89f2d6cf760'
 
 end
 
