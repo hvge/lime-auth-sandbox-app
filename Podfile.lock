@@ -1,48 +1,42 @@
 PODS:
-  - LimeAuth/Core (0.1.0):
+  - LimeAuth/Core (0.3.0):
     - LimeCore
     - PowerAuth2
-  - LimeAuth/UI (0.1.0):
+  - LimeAuth/UI (0.3.0):
     - LimeAuth/Core
-  - LimeAuth/UIResources (0.1.0):
+  - LimeAuth/UIResources (0.3.0):
     - LimeAuth/UI
-  - LimeCore (1.0.0):
-    - LimeCore/Localization (= 1.0.0)
-  - LimeCore/Config (1.0.0):
+  - LimeAuth/UIResources_Illustrations (0.3.0):
+    - LimeAuth/UIResources
+  - LimeAuth/UIResources_Images (0.3.0):
+    - LimeAuth/UIResources
+  - LimeCore (1.0.1):
+    - LimeCore/Localization (= 1.0.1)
+  - LimeCore/Config (1.0.1):
     - LimeCore/Core
-  - LimeCore/Core (1.0.0)
-  - LimeCore/Localization (1.0.0):
+  - LimeCore/Core (1.0.1)
+  - LimeCore/Localization (1.0.1):
     - LimeCore/Config
-  - PowerAuth2 (0.17.2)
+  - PowerAuth2 (0.18.0)
 
 DEPENDENCIES:
-  - LimeAuth/UIResources (from `https://github.com/lime-company/swift-lime-auth.git`, commit `59d208139b595aa907aafa6e23d1d89f2d6cf760`)
+  - LimeAuth/UIResources
+  - LimeAuth/UIResources_Illustrations
+  - LimeAuth/UIResources_Images
   - LimeCore
-  - PowerAuth2 (from `https://github.com/lime-company/lime-security-powerauth-mobile-sdk.git`, commit `861f8cb10a5ab3b51349ddcae08ccca8d2a6255a`)
+  - PowerAuth2
 
-EXTERNAL SOURCES:
-  LimeAuth:
-    :commit: 59d208139b595aa907aafa6e23d1d89f2d6cf760
-    :git: https://github.com/lime-company/swift-lime-auth.git
-  PowerAuth2:
-    :commit: 861f8cb10a5ab3b51349ddcae08ccca8d2a6255a
-    :git: https://github.com/lime-company/lime-security-powerauth-mobile-sdk.git
-    :submodules: true
-
-CHECKOUT OPTIONS:
-  LimeAuth:
-    :commit: 59d208139b595aa907aafa6e23d1d89f2d6cf760
-    :git: https://github.com/lime-company/swift-lime-auth.git
-  PowerAuth2:
-    :commit: 861f8cb10a5ab3b51349ddcae08ccca8d2a6255a
-    :git: https://github.com/lime-company/lime-security-powerauth-mobile-sdk.git
-    :submodules: true
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - LimeAuth
+    - LimeCore
+    - PowerAuth2
 
 SPEC CHECKSUMS:
-  LimeAuth: 99fab11602dc13df6081b2228fe997804405a7a2
-  LimeCore: bd1b4d1c03fc07a21ad8bec493c576d6cc043e7e
-  PowerAuth2: 05c5e8ecd6200d41094d7efb4b7eeafee1e550a5
+  LimeAuth: 593482e5fbaa5a7b6a1f8742c4d1a30c9244c38f
+  LimeCore: d9b4dd6f3b4c93d0744a777388350e43346e33ad
+  PowerAuth2: 15775eab672510cdf6cad89e5e5b3742e17a5ff4
 
-PODFILE CHECKSUM: c68417b1bb115e75f62ef8149634a224bcedcf64
+PODFILE CHECKSUM: 9ef0de8279abc60bc70bc667237961dc4cf7014f
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.2

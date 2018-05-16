@@ -64,15 +64,15 @@ class LoginViewController: UIViewController {
     @IBAction func loginAction(_ sender: Any) {
         
         let session = LimeAuthSession.shared
-        let resourcesProvider = LimeAuthAuthenticationUI.defaultResourcesProvider()
+        let resourcesProvider = LimeAuthAuthenticationUI.currentResourcesProvider()
         let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
         
-        let operation = buildFakeLoginOperation()
-        //let operation = buildRealLoginOperation()
+        //let operation = buildFakeLoginOperation()
+        let operation = buildRealLoginOperation()
         
         var request = Authentication.UIRequest()
         request.tweaks.successAnimationDelay = 650
-        //request.options.insert([.allowBiometryFactor, .askFirstForBiometryFactor])
+        //request.options.insert([.allowBiometryFactor])
         let authUI = LimeAuthAuthenticationUI(session: session, uiProvider: resourcesProvider, credentialsProvider: credentialsProvider, request: request, operation: operation) { (result, response, finalController) in
             self.authenticationUI = nil
             D.print("Operation result: \(result)")
@@ -108,5 +108,11 @@ class LoginViewController: UIViewController {
             }
             return nil
         }
+    }
+}
+
+extension LimeAuthAuthenticationUI {
+    public static func currentResourcesProvider() -> AuthenticationUIProvider {
+        return LimeAuthAuthenticationUI.defaultResourcesProvider(theme: .defaultDarkTheme())
     }
 }

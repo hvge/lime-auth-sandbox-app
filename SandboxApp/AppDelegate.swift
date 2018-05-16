@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		let debugBuild = PA2System.isInDebug()
 		if debugBuild {
-			D.print("AppStart: PowerAuth library is compiled as DEBUG build.")
+			D.warning("AppStart: PowerAuth library is compiled as DEBUG build.")
 			#if !DEBUG
 				fatalError("AppStart: You should not mix debug library and release application!")
 			#endif

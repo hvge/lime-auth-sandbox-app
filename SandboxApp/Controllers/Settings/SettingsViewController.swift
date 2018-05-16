@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func changePinAction(_ sender: Any) {
         let session = LimeAuthSession.shared
-        let uiProvider = LimeAuthAuthenticationUI.defaultResourcesProvider()
+        let uiProvider = LimeAuthAuthenticationUI.currentResourcesProvider()
         let credentials = LimeAuthCredentialsStore(credentials: .defaultCredentials())
         let ui = LimeAuthAuthenticationUI.uiForChangePassword(session: session, uiProvider: uiProvider, credentialsProvider: credentials) { (result, finalController) in
             self.authUI = nil
@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func removeActivation(_ sender: Any) {
         let session = LimeAuthSession.shared
-        let uiProvider = LimeAuthAuthenticationUI.defaultResourcesProvider()
+        let uiProvider = LimeAuthAuthenticationUI.currentResourcesProvider()
         let credentials = LimeAuthCredentialsStore(credentials: .defaultCredentials())
         let ui = LimeAuthAuthenticationUI.uiForRemoveActivation(session: session, uiProvider: uiProvider, credentialsProvider: credentials) { (result, finalController) in
             self.authUI = nil
@@ -93,7 +93,7 @@ class SettingsViewController: UIViewController {
     
     func addBiometry() {
         let session = LimeAuthSession.shared
-        let uiProvider = LimeAuthAuthenticationUI.defaultResourcesProvider()
+        let uiProvider = LimeAuthAuthenticationUI.currentResourcesProvider()
         let credentials = LimeAuthCredentialsStore(credentials: .defaultCredentials())
         let ui = LimeAuthAuthenticationUI.uiForEnableBiometry(session: session, uiProvider: uiProvider, credentialsProvider: credentials) { (result, finalController) in
             self.authUI = nil
