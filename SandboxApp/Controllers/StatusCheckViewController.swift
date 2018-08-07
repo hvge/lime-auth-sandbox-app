@@ -54,9 +54,11 @@ class StatusCheckViewController: UIViewController {
             if let status = status {
                 let state = status.state
                 if state == .active {
+                    D.print("Status is switching to `switchToLogin`")
                     self.performSegue(withIdentifier: "switchToLogin", sender: nil)
                 } else if state == .blocked {
                     let reason = StatusCheckFailureReason(isBlocked: true, otherError: nil, otherMessage: nil)
+                    D.print("Status is switching to `switchToBlocked`")
                     self.performSegue(withIdentifier: "switchToBlocked", sender: reason)
                 } else if state == .removed {
                     let alert = UIAlertController(title: "Error", message: "Activation is no longer valid on this device.", preferredStyle: .alert)
@@ -69,6 +71,7 @@ class StatusCheckViewController: UIViewController {
                 }
             } else {
                 let reason = StatusCheckFailureReason(isBlocked: false, otherError: error, otherMessage: error == nil ? "Unknown error" : nil)
+                D.print("Status is switching to `switchToBlocked`")
                 self.performSegue(withIdentifier: "switchToBlocked", sender: reason)
             }
         }
@@ -78,8 +81,8 @@ class StatusCheckViewController: UIViewController {
     
     func continueWithBrokenActivation() {
         let session = LimeAuthSession.shared
-        let resourcesProvider = LimeAuthActivationUI.defaultResourcesProvider()
-        let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        let resourcesProvider = LimeAuthActivationUI.appResourcesProvider()
+        let credentialsProvider = LimeAuthCredentialsStore.appCredentials()
         let ui = LimeAuthActivationUI(session: session, uiProvider: resourcesProvider, credentialsProvider: credentialsProvider) { [weak self] (result, finalController) in
             guard let `self` = self else {
                 return

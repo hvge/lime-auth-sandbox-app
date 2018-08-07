@@ -35,8 +35,8 @@ class StartActivationViewController: UIViewController {
     @IBAction func startActivationAction(_ sender: Any) {
         let session = LimeAuthSession.shared
         
-        let resourcesProvider = LimeAuthActivationUI.defaultResourcesProvider(activationTheme: .defaultDarkTheme(), authenticationTheme: .defaultDarkTheme())
-        let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        let resourcesProvider = LimeAuthActivationUI.appResourcesProvider()
+        let credentialsProvider = LimeAuthCredentialsStore.appCredentials()
         let ui = LimeAuthActivationUI(session: session, uiProvider: resourcesProvider, credentialsProvider: credentialsProvider) { [weak self] (result, finalController) in
             guard let `self` = self else {
                 return

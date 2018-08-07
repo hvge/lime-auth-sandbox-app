@@ -1,28 +1,31 @@
 PODS:
-  - LimeAuth/Core (0.3.0):
-    - LimeCore
+  - LimeAuth/Core (0.4.2):
+    - LimeCore (~> 1.1)
     - PowerAuth2
-  - LimeAuth/UI (0.3.0):
+  - LimeAuth/UI (0.4.2):
     - LimeAuth/Core
-  - LimeAuth/UIResources (0.3.0):
+  - LimeAuth/UIResources (0.4.2):
     - LimeAuth/UI
-  - LimeAuth/UIResources_Illustrations (0.3.0):
+  - LimeAuth/UIResources_Illustrations (0.4.2):
     - LimeAuth/UIResources
-  - LimeAuth/UIResources_Images (0.3.0):
+  - LimeAuth/UIResources_Images (0.4.2):
     - LimeAuth/UIResources
-  - LimeCore (1.0.1):
-    - LimeCore/Localization (= 1.0.1)
-  - LimeCore/Config (1.0.1):
+  - LimeAuth/UIResources_Localization (0.4.2):
+    - LimeAuth/UIResources
+  - LimeCore (1.1.2):
+    - LimeCore/Localization (= 1.1.2)
+  - LimeCore/Config (1.1.2):
     - LimeCore/Core
-  - LimeCore/Core (1.0.1)
-  - LimeCore/Localization (1.0.1):
+  - LimeCore/Core (1.1.2)
+  - LimeCore/Localization (1.1.2):
     - LimeCore/Config
-  - PowerAuth2 (0.18.0)
+  - PowerAuth2 (0.19.0)
 
 DEPENDENCIES:
   - LimeAuth/UIResources
   - LimeAuth/UIResources_Illustrations
   - LimeAuth/UIResources_Images
+  - LimeAuth/UIResources_Localization
   - LimeCore
   - PowerAuth2
 
@@ -33,10 +36,10 @@ SPEC REPOS:
     - PowerAuth2
 
 SPEC CHECKSUMS:
-  LimeAuth: 593482e5fbaa5a7b6a1f8742c4d1a30c9244c38f
-  LimeCore: d9b4dd6f3b4c93d0744a777388350e43346e33ad
-  PowerAuth2: 15775eab672510cdf6cad89e5e5b3742e17a5ff4
+  LimeAuth: 291feb50a7228c5553cd1580919f6b8fddd9558f
+  LimeCore: cae68f3cc602232e0b03ae22a71eee426c1750f0
+  PowerAuth2: 90f6ac6311bbbc3593c74f0ae987bd319c0a5dcb
 
-PODFILE CHECKSUM: 9ef0de8279abc60bc70bc667237961dc4cf7014f
+PODFILE CHECKSUM: 6b189f6cfd913c4ce39408e8330336ca886b120c
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

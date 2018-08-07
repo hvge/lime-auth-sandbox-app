@@ -75,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func configureLibraries() {
+        D.verboseLevel = .all
 		LimeConfig.registerConfigDomains = { (config) in
 			guard let authSession = config.registerAuthSession,
 				let localization = config.registerLocalization else {

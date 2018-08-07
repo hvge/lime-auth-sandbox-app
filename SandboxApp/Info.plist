@@ -21,7 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We&apos;re using camera to scan activation codes.</string>
+	<string>We're using camera to scan activation codes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>We're using Face ID for authentication purposes</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -28,8 +28,8 @@ class SettingsViewController: UIViewController {
     
     @IBAction func changePinAction(_ sender: Any) {
         let session = LimeAuthSession.shared
-        let uiProvider = LimeAuthAuthenticationUI.currentResourcesProvider()
-        let credentials = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        let uiProvider = LimeAuthAuthenticationUI.appResourcesProvider()
+        let credentials = LimeAuthCredentialsStore.appCredentials()
         let ui = LimeAuthAuthenticationUI.uiForChangePassword(session: session, uiProvider: uiProvider, credentialsProvider: credentials) { (result, finalController) in
             self.authUI = nil
             finalController?.dismiss(animated: true, completion: nil)
@@ -41,8 +41,8 @@ class SettingsViewController: UIViewController {
     
     @IBAction func removeActivation(_ sender: Any) {
         let session = LimeAuthSession.shared
-        let uiProvider = LimeAuthAuthenticationUI.currentResourcesProvider()
-        let credentials = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        let uiProvider = LimeAuthAuthenticationUI.appResourcesProvider()
+        let credentials = LimeAuthCredentialsStore.appCredentials()
         let ui = LimeAuthAuthenticationUI.uiForRemoveActivation(session: session, uiProvider: uiProvider, credentialsProvider: credentials) { (result, finalController) in
             self.authUI = nil
             finalController?.dismiss(animated: true, completion: nil)
@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController {
         //   "configCheck" - tests whether also it's enabled in credentials config.
         //                   this is useful when you're working on reusable app skeleton and
         //                   you're expecting that some derived apps simply won't use biometry at all.
-        let credentialsProvider = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        let credentialsProvider = LimeAuthCredentialsStore.appCredentials()
         let configCheck = credentialsProvider.credentials.biometry.isSupportedOnDevice
         // Of course, nNormally only one test is required :)
         if deviceCheck && configCheck {
@@ -93,8 +93,8 @@ class SettingsViewController: UIViewController {
     
     func addBiometry() {
         let session = LimeAuthSession.shared
-        let uiProvider = LimeAuthAuthenticationUI.currentResourcesProvider()
-        let credentials = LimeAuthCredentialsStore(credentials: .defaultCredentials())
+        let uiProvider = LimeAuthAuthenticationUI.appResourcesProvider()
+        let credentials = LimeAuthCredentialsStore.appCredentials()
         let ui = LimeAuthAuthenticationUI.uiForEnableBiometry(session: session, uiProvider: uiProvider, credentialsProvider: credentials) { (result, finalController) in
             self.authUI = nil
             self.updateBiometryButton()

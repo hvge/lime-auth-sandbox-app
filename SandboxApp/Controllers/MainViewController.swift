@@ -53,8 +53,10 @@ class MainViewController: EmbeddingViewController {
         if !isInActivation {
             if currentState {
                 isInActivation = true
+                D.print("Main Switching to `switchToStatusCheck`")
                 self.performSegue(withIdentifier: "switchToStatusCheck", sender: nil)
             } else {
+                D.print("Main Switching to `switchToActivation`")
                 self.performSegue(withIdentifier: "switchToActivation", sender: nil)
             }
         }

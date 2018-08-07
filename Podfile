@@ -3,15 +3,19 @@ platform :ios, '9.0'
 target 'SandboxApp' do
     use_frameworks!
 
-    pod 'PowerAuth2'
+	pod 'PowerAuth2'
 	pod 'LimeCore'
 	pod 'LimeAuth/UIResources'
 	pod 'LimeAuth/UIResources_Images'
 	pod 'LimeAuth/UIResources_Illustrations'
-
+	pod 'LimeAuth/UIResources_Localization'
+	
+	#pod 'PowerAuth2', :path => '~/Dev/lime/sdk/powerauth-mobile-sdk'
+	#pod 'LimeCore', :path => '~/Dev/lime/swift/swift-lime-core'
 	#pod 'LimeAuth/UIResources', :path => '~/Dev/lime/swift/swift-lime-auth'
 	#pod 'LimeAuth/UIResources_Images', :path => '~/Dev/lime/swift/swift-lime-auth'
 	#pod 'LimeAuth/UIResources_Illustrations', :path => '~/Dev/lime/swift/swift-lime-auth'
+	#pod 'LimeAuth/UIResources_Localization', :path => '~/Dev/lime/swift/swift-lime-auth'
 	
 end
 
